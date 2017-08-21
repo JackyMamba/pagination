@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 通用分页工具
+ * General Pagination Tool
  * @author qingyu8@staff.weibo.com
  * @date 2017/8/17
  */
@@ -9,40 +9,40 @@ class GeneralPage {
 	public static $_url = [];
 	public static $_query = [];
 	/**
-	 * 配置项
+	 * configurations
 	 * @var array
 	 */
 	public static $_config = [
-		//显示当前页的前后n页
+		//display current page's context pages. (imagine grep -C
 		'contextNum' => 4,
 
 		'method' => 'GET',
 
-		//分页跳转的参数名
+		//pagination param name
 		'pageVar' => 'page',
 
-		//a标签href,否则禁止跳转
+		//Tag a'attribute href, whether jump or not
 		'withHref' => true,
 
-		//当前页 a标签 css类
+		//current page's tag a's CSS class
 		'activeClassA' => '',
 
-		//是否以li包裹a标签
+		//whether wrap a with li
 		'withLi' => true,
 
-		//当前页 li标签 css类
+		//current page's tag li's CSS class
 		'activeClassLi' => 'active',
 
-		//withLi为false时，可于此设置a标签外围
+		//when withLi is false, this comes in handy
 		'itemTheme' => '%item%',
 
 		'showFirstLast' => true,
-		'textFirst' => '首页',
-		'textLast' => '最后一页',
+		'textFirst' => 'Home Page',
+		'textLast' => 'Last Page',
 
 		'showPrevNext' => true,
-		'textPrev' => '上一页',
-		'textNext' => '下一页',
+		'textPrev' => 'Next',
+		'textNext' => 'Prev',
 	];
 
 	public static function initConfig(array $config = []) {
@@ -52,8 +52,8 @@ class GeneralPage {
 	}
 
 	/**
-	 * @param int $totalRows 总的记录数
-	 * @param int $pageSize 每页显示记录数
+	 * @param int $totalRows Total reconds
+	 * @param int $pageSize number of reconds displayed per page
 	 * @param array $config
 	 * @return string
 	 */

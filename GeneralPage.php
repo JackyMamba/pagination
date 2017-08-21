@@ -6,13 +6,13 @@
  * @date 2017/8/17
  */
 class GeneralPage {
-	public static $_url = [];
-	public static $_query = [];
+	private static $_url = [];
+	private static $_query = [];
 	/**
 	 * configurations
 	 * @var array
 	 */
-	public static $_config = [
+	private static $_config = [
 		//display current page's context pages. (imagine grep -C
 		'contextNum' => 4,
 
@@ -45,7 +45,7 @@ class GeneralPage {
 		'textNext' => 'Prev',
 	];
 
-	public static function initConfig(array $config = []) {
+	private static function initConfig(array $config = []) {
 		foreach ($config as $k => $v) {
 			(!is_null($v) && isset(self::$_config[$k])) && self::$_config[$k] = $v;
 		}
@@ -54,22 +54,17 @@ class GeneralPage {
 	/**
 	 * @param int $totalRows Total reconds
 	 * @param int $pageSize number of reconds displayed per page
-	 * @param array $config
+     * @param int $curPage
+	 * @param array $config configurations
 	 * @return string
 	 */
-	public static function show($totalRows, $pageSize = 0, $config = []) {
+	public static function show($totalRows, $pageSize = 0, $curPage = 1, $config = []) {
 		if (empty($totalRows) || !is_numeric($totalRows)) {
 			return '';
 		}
 		self::initConfig($config);
 
-		$totalPages = ceil($totalRows / $pageSize); //总页数
-		if (self::$_config['method'] == 'GET') {
-			$curPage = $_GET[self::$_config['pageVar']];
-		} else {
-			$curPage = $_POST[self::$_config['pageVar']];
-		}
-		empty($curPage) && $curPage = 1;
+		$totalPages = ceil($totalRows / $pageSize);
 
 		$startPage = max(1, $curPage - self::$_config['contextNum']);
 		$endPage = min($curPage + self::$_config['contextNum'], $totalPages);

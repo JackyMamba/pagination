@@ -1,11 +1,11 @@
 <?php
 
 /**
-* 1st,get data list from Database
-* assume we have a $_GET param named p, means current page
+*
 * define page size $k
 * get total number $n of data list from Database
-*
+* assume we have a $_GET param named p, means current page
+* then,get data list from Database
 */
 $n = DB::total_count();
 $k = 10;

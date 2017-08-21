@@ -59,6 +59,9 @@ class GeneralPage {
 	 * @return string
 	 */
 	public static function show($totalRows, $pageSize = 0, $curPage = 1, $config = []) {
+		if ($totalRows <= $pageSize) {
+			return '';
+		}
 		if (empty($totalRows) || !is_numeric($totalRows)) {
 			return '';
 		}
